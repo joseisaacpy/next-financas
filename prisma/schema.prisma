@@ -21,7 +21,7 @@ model Gasto {
   id        Int            @id @default(autoincrement())
   titulo    String
   descricao String?
-  valor     Decimal
+  valor     Decimal        @db.Decimal(10, 2)
   categoria CategoriaGasto
 
   criadoEm DateTime @default(now())
@@ -37,10 +37,11 @@ enum CategoriaReceita {
 }
 
 model Receita {
-  id        Int              @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   titulo    String
   descricao String?
-  valor     Decimal
+  valor     Decimal @db.Decimal(10, 2)
+
   categoria CategoriaReceita
   criadoEm  DateTime         @default(now())
 
