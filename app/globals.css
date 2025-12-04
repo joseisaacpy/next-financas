@@ -138,3 +138,11 @@
 .paragraph {
   @apply text-base md:text-xl;
 }
+
+.form {
+  @apply flex flex-col gap-4;
+}
+
+.form-group {
+  @apply flex flex-col gap-2;
+}
