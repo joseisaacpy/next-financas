@@ -14,3 +14,15 @@ export async function GET() {
     return NextResponse.json({ error: "Erro ao buscar gastos" });
   }
 }
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    console.log(body);
+    const gastos = await prisma.gasto.create({ data: body });
+    return NextResponse.json({ message: "Gasto criado com sucesso", gastos });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: "Erro ao criar gastos" });
+  }
+}
