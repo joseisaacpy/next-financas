@@ -7,20 +7,42 @@ datasource db {
   provider = "postgresql"
 }
 
+enum CategoriaGasto {
+  ALIMENTACAO
+  MORADIA
+  SAUDE
+  TRANSPORTE
+  ROUPAS_ACESSORIOS
+  LAZER
+  OUTROS
+}
+
 model Gasto {
-  id        Int     @id @default(autoincrement())
+  id        Int            @id @default(autoincrement())
   titulo    String
   descricao String?
-  valor     Int
+  valor     Decimal
+  categoria CategoriaGasto
+
+  criadoEm DateTime @default(now())
 
   @@map("gastos")
 }
 
+enum CategoriaReceita {
+  SALARIO
+  PROJETOS_FREELAS
+  OUTROS
+  PRESENTES
+}
+
 model Receita {
-  id        Int     @id @default(autoincrement())
+  id        Int              @id @default(autoincrement())
   titulo    String
   descricao String?
-  valor     Int
+  valor     Decimal
+  categoria CategoriaReceita
+  criadoEm  DateTime         @default(now())
 
   @@map("receitas")
 }
