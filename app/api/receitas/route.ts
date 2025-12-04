@@ -15,3 +15,17 @@ export async function GET() {
     return NextResponse.json({ error: "Erro ao buscar receitas" });
   }
 }
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const receita = await prisma.receita.create({ data: body });
+    return NextResponse.json({
+      message: "Receita criada com sucesso",
+      receita,
+    });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: "Erro ao criar receita" });
+  }
+}
