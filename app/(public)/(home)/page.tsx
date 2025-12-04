@@ -1,12 +1,6 @@
 import { navItems } from "@/data/NavLinks";
 import Link from "next/link";
 
-import { Metadata } from "next";
-export const metadata: Metadata = {
-  title: "Painel de Controle",
-  description: "Painel de Controle",
-};
-
 export default function Home() {
   // retornar apenas links que são diferente de "/", pois ele é o link para o painel de controle
   const navFilter = navItems.filter((item) => item.href !== "/");
