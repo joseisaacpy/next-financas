@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { CategoriaGasto, CategoriaReceita } from "@/lib/generated/prisma/enums";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,18 +13,12 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import type { Categoria } from "@/types/categoria";
+import { useCategorias } from "@/hooks/categorias";
 
-// tipo de cadastro do formulário
-type FormProps = {
-  tipo: "gasto" | "receita";
-};
-
-export default function FormCadastro({ tipo }: FormProps) {
-  // pega as categorias vindas do enum do prisma
-  const categoriasGasto = Object.values(CategoriaGasto);
-  const categoriasReceita = Object.values(CategoriaReceita);
+export default function FormCadastro({ tipo }: Categoria) {
   // faz um filtro de categorias com base no tipo do formulário
-  const categorias = tipo === "gasto" ? categoriasGasto : categoriasReceita;
+  const categorias = useCategorias(tipo);
 
   // objeto do form
   const [formData, setFormData] = useState({
