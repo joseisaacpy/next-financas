@@ -19,7 +19,15 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const receita = await prisma.receita.create({ data: body });
+    const receita = await prisma.receita.create({
+      data: {
+        titulo: body.titulo,
+        descricao: body.descricao,
+        valor: body.valor,
+        criadoEm: new Date(body.data),
+        categoria: body.categoria,
+      },
+    });
     return NextResponse.json({
       message: "Receita criada com sucesso",
       receita,

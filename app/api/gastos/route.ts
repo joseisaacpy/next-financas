@@ -18,7 +18,16 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const gasto = await prisma.gasto.create({ data: body });
+    const gasto = await prisma.gasto.create({
+      data: {
+        titulo: body.titulo,
+        descricao: body.descricao,
+        valor: body.valor,
+        criadoEm: new Date(body.data),
+        categoria: body.categoria,
+      },
+    });
+
     return NextResponse.json({ message: "Gasto criado com sucesso", gasto });
   } catch (error) {
     console.error(error);
