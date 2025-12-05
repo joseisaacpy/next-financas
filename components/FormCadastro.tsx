@@ -41,8 +41,12 @@ export default function FormCadastro({ tipo }: Categoria) {
     try {
       // enviar os dados para a API
       const response = await fetch(
-        `api/${tipo === "gasto" ? "gastos" : "receitas"}`,
-        { method: "POST", body: JSON.stringify(formData) }
+        `/api/${tipo === "gasto" ? "gastos" : "receitas"}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
       );
       // verificar se a resposta foi bem sucedida
       if (!response.ok) {
@@ -50,8 +54,6 @@ export default function FormCadastro({ tipo }: Categoria) {
       }
       // obter os dados da resposta
       const data = await response.json();
-      console.log(data);
-      console.log(formData);
 
       // limpar o formulário
       setFormData({
