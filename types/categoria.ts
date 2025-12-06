@@ -1,3 +1,3 @@
 export type Categoria = {
-  tipo: "gasto" | "receita";
+  tipo: "despesa" | "receita";
 };
