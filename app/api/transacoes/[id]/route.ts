@@ -39,3 +39,34 @@ export async function GET(
     );
   }
 }
+
+// DELETE - deleta uma transação por id
+export async function DELETE(
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
+  try {
+    // pega o id
+    const { id } = await context.params;
+    // deleta a transação
+    const transacao = await prisma.transacao.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+    // retorna a transação deletada
+    return NextResponse.json({
+      sucess: true,
+      data: transacao,
+    });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      {
+        sucess: false,
+        error: "Erro ao deletar transação",
+      },
+      { status: 500 }
+    );
+  }
+}

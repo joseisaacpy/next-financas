@@ -34,3 +34,34 @@ export async function GET(
     });
   }
 }
+
+// DELETE - deleta uma categoria por id
+export async function DELETE(
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
+  try {
+    // pega o id
+    const { id } = await context.params;
+    // deleta a categoria
+    const categoria = await prisma.categoria.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+    // retorna a categoria deletada
+    return NextResponse.json({
+      sucess: true,
+      data: categoria,
+    });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      {
+        sucess: false,
+        error: "Erro ao deletar categoria",
+      },
+      { status: 500 }
+    );
+  }
+}
