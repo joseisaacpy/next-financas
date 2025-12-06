@@ -19,3 +19,20 @@ export async function GET() {
     return NextResponse.json({ error: "Erro ao buscar categoria" });
   }
 }
+
+// POST - cria uma nova categoria
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const categoria = await prisma.categoria.create({
+      data: body,
+    });
+    return NextResponse.json(categoria, {
+      status: 201,
+    });
+    // return NextResponse.json(categorias);
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: "Erro ao criar categoria" });
+  }
+}
