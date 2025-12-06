@@ -5,6 +5,9 @@ import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Next-Finanças",
+  icons: {
+    icon: "/assets/favicon/favicon.ico",
+  },
 };
 
 import { Poppins } from "next/font/google";
