@@ -23,14 +23,14 @@ export async function GET(
       );
     // retorna a transação
     return NextResponse.json({
-      sucess: true,
+      success: true,
       data: transacao,
     });
   } catch (error) {
     console.error(error);
     return NextResponse.json(
       {
-        sucess: false,
+        success: false,
         error: "Erro ao buscar transação",
       },
       {
@@ -56,14 +56,14 @@ export async function DELETE(
     });
     // retorna a transação deletada
     return NextResponse.json({
-      sucess: true,
+      success: true,
       data: transacao,
     });
   } catch (error) {
     console.error(error);
     return NextResponse.json(
       {
-        sucess: false,
+        success: false,
         error: "Erro ao deletar transação",
       },
       { status: 500 }

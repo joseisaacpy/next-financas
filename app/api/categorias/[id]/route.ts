@@ -18,18 +18,18 @@ export async function GET(
     // valida se a categoria foi encontrada
     if (!categoria)
       return NextResponse.json(
-        { sucess: false, error: "Categoria não encontrada" },
+        { success: false, error: "Categoria não encontrada" },
         { status: 404 }
       );
     // retorna a categoria
     return NextResponse.json({
-      sucess: true,
+      success: true,
       data: categoria,
     });
   } catch (error) {
     console.error(error);
     return NextResponse.json({
-      sucess: false,
+      success: false,
       error: "Erro ao buscar categoria",
     });
   }
@@ -51,14 +51,14 @@ export async function DELETE(
     });
     // retorna a categoria deletada
     return NextResponse.json({
-      sucess: true,
+      success: true,
       data: categoria,
     });
   } catch (error) {
     console.error(error);
     return NextResponse.json(
       {
-        sucess: false,
+        success: false,
         error: "Erro ao deletar categoria",
       },
       { status: 500 }

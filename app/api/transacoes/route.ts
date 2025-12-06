@@ -11,14 +11,14 @@ export async function GET() {
     });
     // retorna as transações
     return NextResponse.json({
-      sucess: true,
+      success: true,
       data: transacoes,
     });
   } catch (error) {
     console.error(error);
     return NextResponse.json(
       {
-        sucess: false,
+        success: false,
         error: "Erro ao buscar transações",
       },
       { status: 500 }
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
     });
     return NextResponse.json(
       {
-        sucess: true,
+        success: true,
         data: transacao,
       },
       { status: 201 }
@@ -46,7 +46,7 @@ export async function POST(request: Request) {
     console.error(error);
     return NextResponse.json(
       {
-        sucess: false,
+        success: false,
         error: "Erro ao criar transação",
       },
       { status: 500 }
