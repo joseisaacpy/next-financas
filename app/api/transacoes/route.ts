@@ -25,3 +25,31 @@ export async function GET() {
     );
   }
 }
+
+// POST - cria uma nova transação
+export async function POST(request: Request) {
+  try {
+    // pega o body
+    const body = await request.json();
+    // cria a transação
+    const transacao = await prisma.transacao.create({
+      data: body,
+    });
+    return NextResponse.json(
+      {
+        sucess: true,
+        data: transacao,
+      },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      {
+        sucess: false,
+        error: "Erro ao criar transação",
+      },
+      { status: 500 }
+    );
+  }
+}
