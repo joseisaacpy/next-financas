@@ -14,7 +14,7 @@ enum TipoTransacao {
 
 model Categoria {
   id         Int           @id @default(autoincrement())
-  nome       String
+  nome       String        @unique
   tipo       TipoTransacao
   transacoes Transacao[]
 
