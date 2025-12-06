@@ -22,15 +22,15 @@ export const navItems: NavItem[] = [
     icon: <Home />,
   },
   {
-    name: "Gastos",
-    description: "Veja e gerencie todos os seus gastos registrados.",
-    href: "/gastos",
+    name: "Despesas",
+    description: "Veja e gerencie todas as suas despesas registradas.",
+    href: "/despesas",
     icon: <CreditCard />,
   },
   {
-    name: "Novo Gasto",
+    name: "Nova Despesa",
     description: "Adicione uma nova despesa ao seu controle.",
-    href: "/gastos/novo",
+    href: "/despesas/novo",
     icon: <DollarSign />,
   },
   {
