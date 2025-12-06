@@ -7,41 +7,29 @@ datasource db {
   provider = "postgresql"
 }
 
-enum CategoriaGasto {
-  ALIMENTACAO
-  MORADIA
-  SAUDE
-  TRANSPORTE
-  ROUPAS_ACESSORIOS
-  LAZER
-  OUTROS
+enum TipoTransacao {
+  RECEITA
+  DESPESA
 }
 
-model Gasto {
-  id        Int            @id @default(autoincrement())
-  titulo    String
-  descricao String?
-  valor     Decimal        @db.Decimal(10, 2)
-  categoria CategoriaGasto
-  criadoEm  DateTime       @default(now())
+model Categoria {
+  id         Int           @id @default(autoincrement())
+  nome       String
+  tipo       TipoTransacao
+  transacoes Transacao[]
 
-  @@map("gastos")
+  @@map("categorias")
 }
 
-enum CategoriaReceita {
-  SALARIO
-  PROJETOS_FREELAS
-  OUTROS
-  PRESENTES
-}
+model Transacao {
+  id          Int           @id @default(autoincrement())
+  titulo      String
+  descricao   String?
+  valor       Decimal       @db.Decimal(10, 2)
+  tipo        TipoTransacao
+  categoriaId Int
+  categoria   Categoria     @relation(fields: [categoriaId], references: [id])
+  criadoEm    DateTime      @default(now())
 
-model Receita {
-  id        Int              @id @default(autoincrement())
-  titulo    String
-  descricao String?
-  valor     Decimal          @db.Decimal(10, 2)
-  categoria CategoriaReceita
-  criadoEm  DateTime         @default(now())
-
-  @@map("receitas")
+  @@map("transacoes")
 }
