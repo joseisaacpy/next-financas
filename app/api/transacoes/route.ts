@@ -9,17 +9,19 @@ export async function GET() {
         criadoEm: "desc",
       },
     });
-    // valida se as transações foram encontradas
-    if (!transacoes)
-      return NextResponse.json(
-        { error: "Transações não encontradas" },
-        { status: 404 }
-      );
-    // se nenhuma transação for encontrada, retorna um array vazio
-    if (transacoes.length === 0) return NextResponse.json([]);
-    return NextResponse.json(transacoes);
+    // retorna as transações
+    return NextResponse.json({
+      sucess: true,
+      data: transacoes,
+    });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: "Erro ao buscar transações" });
+    return NextResponse.json(
+      {
+        sucess: false,
+        error: "Erro ao buscar transações",
+      },
+      { status: 500 }
+    );
   }
 }

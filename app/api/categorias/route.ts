@@ -5,34 +5,47 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     const categorias = await prisma.categoria.findMany();
-    // valida se as transações foram encontradas
-    if (!categorias)
-      return NextResponse.json(
-        { error: "Categorias não encontradas" },
-        { status: 404 }
-      );
-    // se nenhuma categoria for encontrada, retorna um array vazio
-    if (categorias.length === 0) return NextResponse.json([]);
-    return NextResponse.json(categorias);
+    // retorna as categorias
+    return NextResponse.json({
+      sucess: true,
+      data: categorias,
+    });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: "Erro ao buscar categoria" });
+    return NextResponse.json(
+      {
+        sucess: false,
+        error: "Erro ao buscar categoria",
+      },
+      { status: 500 }
+    );
   }
 }
 
 // POST - cria uma nova categoria
 export async function POST(request: Request) {
   try {
+    // pega o body
     const body = await request.json();
+    // cria a categoria
     const categoria = await prisma.categoria.create({
       data: body,
     });
-    return NextResponse.json(categoria, {
-      status: 201,
-    });
-    // return NextResponse.json(categorias);
+    return NextResponse.json(
+      {
+        sucess: true,
+        data: categoria,
+      },
+      { status: 201 }
+    );
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: "Erro ao criar categoria" });
+    return NextResponse.json(
+      {
+        sucess: false,
+        error: "Erro ao criar categoria",
+      },
+      { status: 500 }
+    );
   }
 }
