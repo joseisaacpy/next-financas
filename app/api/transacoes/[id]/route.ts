@@ -21,9 +21,21 @@ export async function GET(
         { error: "Transação não encontrada" },
         { status: 404 }
       );
-    return NextResponse.json(transacao);
+    // retorna a transação
+    return NextResponse.json({
+      sucess: true,
+      data: transacao,
+    });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: "Erro ao buscar transação" });
+    return NextResponse.json(
+      {
+        sucess: false,
+        error: "Erro ao buscar transação",
+      },
+      {
+        status: 500,
+      }
+    );
   }
 }
