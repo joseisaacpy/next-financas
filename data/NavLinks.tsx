@@ -22,6 +22,18 @@ export const navItems: NavItem[] = [
     icon: <Home />,
   },
   {
+    name: "Categorias",
+    description: "Visualize e gerencie suas categorias.",
+    href: "/categorias",
+    icon: <Calendar />,
+  },
+  {
+    name: "Nova Categoria",
+    description: "Adicione uma nova categoria ao seu controle.",
+    href: "/categorias/nova",
+    icon: <Calendar />,
+  },
+  {
     name: "Despesas",
     description: "Veja e gerencie todas as suas despesas registradas.",
     href: "/despesas",
