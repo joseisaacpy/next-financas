@@ -1,11 +1,13 @@
-import type { Categoria } from "@/types/categoria";
+import type { Categoria } from "./categoria";
+
+import type { TipoTransacao } from "./tipoTransacao";
 
 export type LinhaTabela = {
   id: number;
   titulo: string;
   descricao: string | null;
   valor: number;
-  tipo: "DESPESA" | "RECEITA";
+  tipo: TipoTransacao;
   criadoEm: Date;
   categoria: Categoria;
 };

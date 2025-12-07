@@ -1,5 +1,7 @@
+import { TipoTransacao } from "./tipoTransacao";
+
 export type Categoria = {
   id: number;
   nome: string;
-  tipo: "despesa" | "receita";
+  tipo: TipoTransacao;
 };
