@@ -31,9 +31,19 @@ export async function POST(request: Request) {
   try {
     // pega o body
     const body = await request.json();
+
+    // transformar o body em um objeto do prisma
+    const transacaoData = {
+      titulo: body.titulo,
+      descricao: body.descricao,
+      valor: Number(body.valor),
+      tipo: body.tipo,
+      categoriaId: Number(body.categoriaId),
+      criadoEm: new Date(body.data),
+    };
     // cria a transação
     const transacao = await prisma.transacao.create({
-      data: body,
+      data: transacaoData,
     });
     return NextResponse.json(
       {
