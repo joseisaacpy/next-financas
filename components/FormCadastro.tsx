@@ -27,7 +27,7 @@ export default function FormCadastro() {
     valor: 0,
     tipo: "",
     categoriaId: "",
-    data: "",
+    data: new Date().toISOString().split("T")[0],
   });
 
   //   função para enviar o formulário
@@ -67,7 +67,7 @@ export default function FormCadastro() {
         valor: 0,
         tipo: "",
         categoriaId: "",
-        data: "",
+        data: new Date().toISOString().split("T")[0],
       });
 
       // mensagem de sucesso
