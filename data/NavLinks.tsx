@@ -22,6 +22,12 @@ export const navItems: NavItem[] = [
     icon: <Home />,
   },
   {
+    name: "Nova Transação",
+    description: "Cadastre uma nova transação(despesa ou receita).",
+    href: "/cadastro",
+    icon: <DollarSign />,
+  },
+  {
     name: "Categorias",
     description: "Visualize e gerencie suas categorias.",
     href: "/categorias",
@@ -39,18 +45,7 @@ export const navItems: NavItem[] = [
     href: "/despesas",
     icon: <CreditCard />,
   },
-  {
-    name: "Nova Despesa",
-    description: "Adicione uma nova despesa ao seu controle.",
-    href: "/despesas/novo",
-    icon: <DollarSign />,
-  },
-  {
-    name: "Nova Receita",
-    description: "Registre um novo ganho ou entrada de dinheiro.",
-    href: "/receitas/nova",
-    icon: <Calendar />,
-  },
+
   {
     name: "Receitas",
     description: "Acompanhe todas as suas entradas de renda.",
