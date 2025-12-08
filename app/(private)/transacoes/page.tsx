@@ -16,7 +16,7 @@ export default async function Transacoes() {
   const dados = transformLista(transacoes);
   return (
     <section>
-      <h1 className="title-primary">Todos as transações</h1>
+      <h1 className="title-primary">Todas as transações</h1>
       <Table>
         <HeaderTable />
         <TableList dados={dados} />
