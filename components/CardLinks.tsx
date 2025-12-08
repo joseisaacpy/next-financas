@@ -11,8 +11,8 @@ import type { NavItem } from "@/data/NavLinks";
 
 export default function CardLinks({ name, description, href, icon }: NavItem) {
   return (
-    <Link href={href}>
-      <Card>
+    <Link href={href} className="hover block">
+      <Card className="border-2 border-blue-500/50">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-2xl font-bold">{name}</CardTitle>
           {icon}
