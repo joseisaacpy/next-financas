@@ -95,8 +95,15 @@ export default function RowTable({
       </TableCell>
       <TableCell className="font-medium">{categoria.nome}</TableCell>
       <TableCell className="font-medium">
-        <Badge variant={tipo === "DESPESA" ? "destructive" : "default"}>
-          {tipo}
+        <Badge
+          variant={tipo === "DESPESA" ? "destructive" : "default"}
+          className={
+            tipo === "DESPESA"
+              ? "bg-red-600 hover:bg-red-700"
+              : "bg-green-700 hover:bg-green-800"
+          }
+        >
+          {tipo === "DESPESA" ? "Despesa" : "Receita"}
         </Badge>
       </TableCell>
       <TableCell>
