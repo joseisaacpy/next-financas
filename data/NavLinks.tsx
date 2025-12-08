@@ -42,14 +42,19 @@ export const navItems: NavItem[] = [
   {
     name: "Despesas",
     description: "Veja e gerencie todas as suas despesas registradas.",
-    href: "/despesas",
+    href: "/transacoes/despesas",
     icon: <CreditCard />,
   },
-
+  {
+    name: "Todas as Transações",
+    description: "Veja e gerencie todas as suas transações.",
+    href: "/transacoes",
+    icon: <CreditCard />,
+  },
   {
     name: "Receitas",
     description: "Acompanhe todas as suas entradas de renda.",
-    href: "/receitas",
+    href: "transacoes/receitas",
     icon: <BarChart />,
   },
   {

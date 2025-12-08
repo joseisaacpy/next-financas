@@ -4,8 +4,8 @@ import HeaderTable from "@/components/table/HeaderTable";
 import TableList from "@/components/table/TableList";
 import { transformLista } from "@/utils/transformTransacao";
 
-export default async function Registros() {
-  const registros = await prisma.transacao.findMany({
+export default async function Transacoes() {
+  const transacoes = await prisma.transacao.findMany({
     orderBy: {
       criadoEm: "desc",
     },
@@ -13,10 +13,10 @@ export default async function Registros() {
       categoria: true,
     },
   });
-  const dados = transformLista(registros);
+  const dados = transformLista(transacoes);
   return (
     <section>
-      <h1 className="title-primary">Todos os registros</h1>
+      <h1 className="title-primary">Todos as transações</h1>
       <Table>
         <HeaderTable />
         <TableList dados={dados} />
