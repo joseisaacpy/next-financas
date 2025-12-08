@@ -73,7 +73,16 @@ export default function RowTable({
   });
 
   return (
-    <TableRow>
+    <TableRow
+      className={`
+    border-2
+    ${
+      tipo === "DESPESA"
+        ? "bg-red-50 border-red-300"
+        : "bg-green-50 border-green-300"
+    }
+  `}
+    >
       <TableCell className="font-medium">{dataFormatada}</TableCell>
       <TableCell className="font-medium">{titulo}</TableCell>
       <TableCell className="font-medium">{descricao || "-"}</TableCell>
