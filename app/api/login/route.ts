@@ -36,6 +36,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         success: true,
+        message: "Login realizado com sucesso.",
         token: "token",
       },
       { status: 200 }
