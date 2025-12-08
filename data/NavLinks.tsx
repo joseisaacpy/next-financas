@@ -1,13 +1,6 @@
-import {
-  Home,
-  BarChart,
-  Calendar,
-  CreditCard,
-  DollarSign,
-  PieChart,
-} from "lucide-react";
+import { Home, Calendar, CreditCard, DollarSign, PieChart } from "lucide-react";
 
-type NavItem = {
+export type NavItem = {
   name: string;
   description: string;
   href: string;
