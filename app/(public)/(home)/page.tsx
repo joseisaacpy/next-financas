@@ -5,7 +5,7 @@ export default function Home() {
   // retornar apenas links que são diferente de "/", pois ele é o link para o painel de controle
   const navFilter = navItems.filter((item) => item.href !== "/");
   return (
-    <section className="">
+    <section className="section">
       {/* texto */}
       <div className="space-y-2 mb-2">
         <h1 className="title-primary">Bem-vindo ao Painel de Navegação</h1>
@@ -14,7 +14,7 @@ export default function Home() {
         </p>
       </div>
       {/* links */}
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-4">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
         {navFilter.map((item) => (
           <li key={item.name}>
             <CardLinks {...item} />
