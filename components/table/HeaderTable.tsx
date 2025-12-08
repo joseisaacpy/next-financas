@@ -4,12 +4,12 @@ export default function HeaderTable() {
   return (
     <TableHeader>
       <TableRow>
-        <TableHead>Data</TableHead>
-        <TableHead>Nome</TableHead>
-        <TableHead>Descrição</TableHead>
-        <TableHead>Valor</TableHead>
-        <TableHead>Categoria</TableHead>
-        <TableHead>Ações</TableHead>
+        <TableHead className="text-left">Data</TableHead>
+        <TableHead className="text-left">Nome</TableHead>
+        <TableHead className="text-left">Descrição</TableHead>
+        <TableHead className="text-left">Valor</TableHead>
+        <TableHead className="text-left">Categoria</TableHead>
+        <TableHead className="text-left">Ações</TableHead>
       </TableRow>
     </TableHeader>
   );
