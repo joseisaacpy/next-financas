@@ -17,50 +17,32 @@ type NavItem = {
 export const navItems: NavItem[] = [
   {
     name: "Início",
-    description: "Acesse o painel de controle.",
     href: "/",
     icon: <Home />,
+    description: "Acesse o painel de controle.",
   },
   {
     name: "Nova Transação",
-    description: "Cadastre uma nova transação(despesa ou receita).",
     href: "/cadastro",
     icon: <DollarSign />,
+    description: "Cadastre uma nova transação.",
+  },
+  {
+    name: "Transações",
+    href: "/transacoes",
+    icon: <CreditCard />,
+    description: "Veja e gerencie todas as transações.",
   },
   {
     name: "Categorias",
-    description: "Visualize e gerencie suas categorias.",
     href: "/categorias",
     icon: <Calendar />,
-  },
-  {
-    name: "Nova Categoria",
-    description: "Adicione uma nova categoria ao seu controle.",
-    href: "/categorias/nova",
-    icon: <Calendar />,
-  },
-  {
-    name: "Despesas",
-    description: "Veja e gerencie todas as suas despesas registradas.",
-    href: "/transacoes/despesas",
-    icon: <CreditCard />,
-  },
-  {
-    name: "Todas as Transações",
-    description: "Veja e gerencie todas as suas transações.",
-    href: "/transacoes",
-    icon: <CreditCard />,
-  },
-  {
-    name: "Receitas",
-    description: "Acompanhe todas as suas entradas de renda.",
-    href: "transacoes/receitas",
-    icon: <BarChart />,
+    description: "Gerencie suas categorias.",
   },
   {
     name: "Resumo",
-    description: "Visualize um balanço geral das suas finanças.",
     href: "/dashboard",
     icon: <PieChart />,
+    description: "Acompanhe seu balanço financeiro.",
   },
 ];
