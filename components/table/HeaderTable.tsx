@@ -9,6 +9,7 @@ export default function HeaderTable() {
         <TableHead className="text-left">Descrição</TableHead>
         <TableHead className="text-left">Valor</TableHead>
         <TableHead className="text-left">Categoria</TableHead>
+        <TableHead className="text-left">Tipo</TableHead>
         <TableHead className="text-left">Ações</TableHead>
       </TableRow>
     </TableHeader>

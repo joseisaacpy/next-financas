@@ -4,6 +4,7 @@ import { TableCell, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import type { LinhaTabela } from "@/types/linha";
 import { toast } from "sonner";
+import { Badge } from "@/components/ui/badge";
 
 export default function RowTable({
   id,
@@ -93,6 +94,11 @@ export default function RowTable({
         })}
       </TableCell>
       <TableCell className="font-medium">{categoria.nome}</TableCell>
+      <TableCell className="font-medium">
+        <Badge variant={tipo === "DESPESA" ? "destructive" : "default"}>
+          {tipo}
+        </Badge>
+      </TableCell>
       <TableCell>
         <div className="flex gap-2">
           <Button onClick={() => handleDelete(id)}>Excluir</Button>
