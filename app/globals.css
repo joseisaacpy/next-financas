@@ -132,7 +132,11 @@
 }
 
 .section {
-  @apply max-w-7xl flex flex-col mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12;
+  @apply max-w-7xl flex flex-col mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 space-y-2;
+}
+
+.form{
+  @apply flex flex-col gap-4
 }
 
 .title-primary {
