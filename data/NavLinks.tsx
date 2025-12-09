@@ -1,4 +1,4 @@
-import { Home, CreditCard, DollarSign, PieChart } from "lucide-react";
+import { CreditCard, DollarSign, PieChart } from "lucide-react";
 
 export type NavItem = {
   name: string;
@@ -8,12 +8,6 @@ export type NavItem = {
 };
 
 export const navItems: NavItem[] = [
-  {
-    name: "Início",
-    href: "/",
-    icon: <Home />,
-    description: "Acesse o painel de controle.",
-  },
   {
     name: "Nova Transação",
     href: "/cadastro",
@@ -27,8 +21,8 @@ export const navItems: NavItem[] = [
     description: "Veja e gerencie todas as transações.",
   },
   {
-    name: "Resumo",
-    href: "/dashboard",
+    name: "Dashboard",
+    href: "/",
     icon: <PieChart />,
     description: "Acompanhe seu balanço financeiro.",
   },

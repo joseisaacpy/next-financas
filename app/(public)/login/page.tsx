@@ -44,7 +44,7 @@ export default function Login() {
       toast.success(data.message);
 
       // redireciona para a rota de dashboard
-      router.push("/dashboard");
+      router.push("/");
     } catch (error) {
       console.error(error);
       toast.error("Erro ao logar");
