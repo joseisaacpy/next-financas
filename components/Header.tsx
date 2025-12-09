@@ -14,11 +14,9 @@ export default function Header() {
     <header className="bg-gray-800">
       <nav className="flex justify-between px-4 py-2 md:justify-around items-center">
         {/* logo */}
-        <Link href="/">
-          <h1 className="text-2xl font-bold text-white">Logo</h1>
-        </Link>
+        <h1 className="text-2xl font-bold text-white">NextFinanças</h1>
 
-        {/* menu mobile */}
+        {/* btn menu mobile */}
         <div className="md:hidden">
           <Menu className="text-white" />
         </div>
