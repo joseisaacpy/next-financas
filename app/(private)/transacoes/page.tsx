@@ -4,6 +4,9 @@ import HeaderTable from "@/components/table/HeaderTable";
 import TableList from "@/components/table/TableList";
 import { transformLista } from "@/utils/transformTransacao";
 
+// para carregar dados do servidor sem cache
+export const dynamic = "force-dynamic";
+
 export default async function Transacoes() {
   const transacoes = await prisma.transacao.findMany({
     orderBy: {
