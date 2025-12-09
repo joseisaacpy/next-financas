@@ -11,7 +11,7 @@ export default function NotFound() {
       <p className="text-lg md:text-xl">
         Ocorreu um erro ao tentar acessar essa pagina.
       </p>
-      <Link href="/">
+      <Link href="/dashboard">
         <Button>
           Voltar para o início <ArrowLeft className="ml-2 animate-pulse" />
         </Button>
