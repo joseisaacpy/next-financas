@@ -1,4 +1,4 @@
-import { Home, Calendar, CreditCard, DollarSign, PieChart } from "lucide-react";
+import { Home, CreditCard, DollarSign, PieChart } from "lucide-react";
 
 export type NavItem = {
   name: string;
@@ -25,12 +25,6 @@ export const navItems: NavItem[] = [
     href: "/transacoes",
     icon: <CreditCard />,
     description: "Veja e gerencie todas as transações.",
-  },
-  {
-    name: "Categorias",
-    href: "/categorias",
-    icon: <Calendar />,
-    description: "Gerencie suas categorias.",
   },
   {
     name: "Resumo",
