@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -8,6 +9,8 @@ import { toast } from "sonner";
 import { Eye, EyeOff } from "lucide-react";
 
 export default function Login() {
+  // router
+  const router = useRouter();
   // estado para controlar o formulário
   const [form, setForm] = useState({
     email: "",
@@ -39,6 +42,8 @@ export default function Login() {
       const data = await response.json();
 
       toast.success(data.message);
+      // redireciona para a home
+      router.push("/");
     } catch (error) {
       console.error(error);
       toast.error("Erro ao logar");
