@@ -21,16 +21,8 @@ export default function Header() {
         <ul
           className={`${
             menuMobile ? "flex" : "hidden"
-          } absolute top-0 left-0 w-full h-screen flex-col items-center justify-center bg-gray-800 text-white`}
+          } absolute top-0 z-10 left-0 w-full h-screen flex-col items-center justify-center bg-gray-800 text-white`}
         >
-          {/* botão para fechar o menu */}
-          <Button
-            className="md:hidden"
-            variant={"ghost"}
-            onClick={() => setMenuMobile(!menuMobile)}
-          >
-            <X className="w-6 h-6 text-white" />
-          </Button>
           {navItems.map((item) => (
             <li key={item.name}>
               <Link href={item.href}>
@@ -46,6 +38,14 @@ export default function Header() {
               </Link>
             </li>
           ))}
+          {/* botão para fechar o menu */}
+          <Button
+            className="md:hidden"
+            variant={"ghost"}
+            onClick={() => setMenuMobile(!menuMobile)}
+          >
+            <X className="w-6 h-6 text-white" />
+          </Button>
         </ul>
         {/* menu desktop */}
         <ul className="hidden md:flex">
