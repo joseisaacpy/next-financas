@@ -44,7 +44,7 @@ export default function Dashboard() {
     return <Loader />;
   }
   return (
-    <section className="px-4 py-2">
+    <section className="px-4 py-2 space-y-4">
       {/* grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         <CardDash title="Receitas" value={receitas.length} />
