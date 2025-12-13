@@ -2,11 +2,14 @@
 import { useState, useEffect } from "react";
 import Loader from "@/components/Loader";
 import CardDash from "@/components/dash/CardDash";
+import CardUltimoLog from "@/components/dash/CardUltimoLog";
 import TableLog from "@/components/dash/TableLog";
+import type { TipoTransacao } from "@/types/tipoTransacao";
 
 type Transacao = {
   titulo: string;
   valor: number;
+  tipo: TipoTransacao;
 };
 
 export default function Dashboard() {
@@ -16,6 +19,7 @@ export default function Dashboard() {
   const [ultimaTransacao, setUltimaTransacao] = useState<Transacao>({
     titulo: "",
     valor: 0,
+    tipo: "",
   });
   const [ultimasTransacoes, setUltimasTransacoes] = useState([]);
   const [categorias, setCategorias] = useState([]);
@@ -50,10 +54,10 @@ export default function Dashboard() {
         <CardDash title="Receitas" value={receitas.length} />
         <CardDash title="Despesas" value={despesas.length} />
         <CardDash title="Categorias" value={categorias.length} />
-        <CardDash
-          title="Última Transação"
-          subtitle={ultimaTransacao?.titulo ?? "Nenhuma transação"}
-          value={ultimaTransacao?.valor ?? "-"}
+        <CardUltimoLog
+          title={ultimaTransacao.titulo}
+          tipo={ultimaTransacao.tipo}
+          value={ultimaTransacao.valor}
         />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2">
