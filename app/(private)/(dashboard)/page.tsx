@@ -1,6 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
 import Loader from "@/components/Loader";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import CardDash from "@/components/dash/CardDash";
 import CardUltimoLog from "@/components/dash/CardUltimoLog";
 import TableLog from "@/components/dash/TableLog";
@@ -49,6 +52,20 @@ export default function Dashboard() {
   }
   return (
     <section className="px-4 py-2 space-y-4">
+      <h1 className="title-primary">Filtrar por datas</h1>
+      {/* filtros de datas */}
+      <div>
+        <div className="flex justify-center items-center gap-2">
+          <div className="form-group">
+            <Label htmlFor="dataInicial">De:</Label>
+            <Input id="dataInicial" type="date" />
+          </div>
+          <div className="form-group">
+            <Label htmlFor="dataFinal">Até:</Label>
+            <Input id="dataFinal" type="date" />
+          </div>
+        </div>
+      </div>
       {/* grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         <CardDash title="Receitas" value={receitas.length} />
