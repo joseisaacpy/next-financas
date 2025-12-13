@@ -3,36 +3,32 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
-    const receitas = await prisma.transacao.findMany({
-      where: {
-        tipo: "RECEITA",
-      },
-      orderBy: {
-        criadoEm: "desc",
-      },
-    });
-    const despesas = await prisma.transacao.findMany({
-      where: {
-        tipo: "DESPESA",
-      },
-      orderBy: {
-        criadoEm: "desc",
-      },
-    });
-    const ultimaTransacao = await prisma.transacao.findFirst({
-      orderBy: {
-        criadoEm: "desc",
-      },
-    });
-    const ultimasTransacoes = await prisma.transacao.findMany({
+    // buscar todas as transações em ordenando por data e includindo a categoria
+    const transacoes = await prisma.transacao.findMany({
       orderBy: {
         criadoEm: "desc",
       },
       include: {
         categoria: true,
       },
-      take: 5,
     });
+
+    // separar as receitas e as despesas
+    const receitas = transacoes.filter(
+      (transacao) => transacao.tipo === "RECEITA"
+    );
+
+    const despesas = transacoes.filter(
+      (transacao) => transacao.tipo === "DESPESA"
+    );
+
+    // pega as ultimas transações
+    const ultimasTransacoes = transacoes.slice(0, 5);
+
+    // pega a ultima transação
+    const ultimaTransacao = transacoes[0];
+
+    // pega as categorias
     const categorias = await prisma.categoria.findMany();
 
     return NextResponse.json({
