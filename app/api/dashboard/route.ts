@@ -3,49 +3,69 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
-    // buscar todas as transações em ordenando por data e includindo a categoria
-    const transacoes = await prisma.transacao.findMany({
-      orderBy: {
-        criadoEm: "desc",
-      },
-      include: {
-        categoria: true,
-      },
+    // faz a consulta das informações
+    const [metricas, ultimasTransacoes] = await Promise.all([
+      // métricas por grupo
+      prisma.transacao.groupBy({
+        by: ["tipo"],
+        _count: { _all: true },
+        _sum: { valor: true },
+      }),
+      // ultimas transações
+      prisma.transacao.findMany({
+        orderBy: { criadoEm: "desc" },
+        take: 5,
+        include: { categoria: true },
+      }),
+    ]);
+
+    // cria o resumo para deixar a api mais limpa e simplificada
+    const resumo = {
+      totalReceitas: 0,
+      totalDespesas: 0,
+      quantidadeReceitas: 0,
+      quantidadeDespesas: 0,
+      saldo: 0,
+    };
+    // pega os valores das métricas e atualiza o resumo
+    metricas.forEach((item) => {
+      const valor = Number(item._sum.valor ?? 0);
+
+      if (item.tipo === "RECEITA") {
+        resumo.totalReceitas = valor;
+        resumo.quantidadeReceitas = item._count._all;
+      }
+
+      if (item.tipo === "DESPESA") {
+        resumo.totalDespesas = valor;
+        resumo.quantidadeDespesas = item._count._all;
+      }
     });
+    resumo.saldo = resumo.totalReceitas - resumo.totalDespesas;
 
-    // separar as receitas e as despesas
-    const receitas = transacoes.filter(
-      (transacao) => transacao.tipo === "RECEITA"
-    );
+    // pega a utlimma transacao, e se nao houver transacoes, retorna null
+    const ultimaTransacao =
+      ultimasTransacoes.length === 0 ? null : ultimasTransacoes[0];
 
-    const despesas = transacoes.filter(
-      (transacao) => transacao.tipo === "DESPESA"
-    );
-
-    // pega as ultimas transações
-    const ultimasTransacoes = transacoes.slice(0, 5);
-
-    // pega a ultima transação
-    const ultimaTransacao = transacoes[0];
-
-    // pega as categorias
-    const categorias = await prisma.categoria.findMany();
-
-    return NextResponse.json({
-      success: true,
-      data: {
-        receitas,
-        despesas,
-        ultimaTransacao,
-        ultimasTransacoes,
-        categorias,
+    return NextResponse.json(
+      {
+        success: true,
+        data: {
+          resumo,
+          ultimaTransacao,
+          ultimasTransacoes,
+        },
       },
-    });
+      { status: 200 }
+    );
   } catch (error) {
     console.error(error);
-    return NextResponse.json({
-      success: false,
-      error: "Erro ao buscar dados para o dashboard",
-    });
+    return NextResponse.json(
+      {
+        success: false,
+        error: "Erro ao buscar dados para o dashboard",
+      },
+      { status: 500 }
+    );
   }
 }
