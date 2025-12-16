@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import Loader from "@/components/Loader";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import CardDash from "@/components/dash/CardDash";
@@ -17,15 +16,16 @@ type Transacao = {
 
 export default function Dashboard() {
   // estados para armazenar os dados
-  const [despesas, setDespesas] = useState([]);
-  const [receitas, setReceitas] = useState([]);
+  const [qtdReceitas, setQtdReceitas] = useState<number>(0);
+  const [qtdDespesas, setQtdDespesas] = useState<number>(0);
+  const [somaReceitas, setSomaReceitas] = useState<number>(0);
+  const [somaDespesas, setSomaDespesas] = useState<number>(0);
   const [ultimaTransacao, setUltimaTransacao] = useState<Transacao>({
     titulo: "",
     valor: 0,
     tipo: "",
   });
   const [ultimasTransacoes, setUltimasTransacoes] = useState([]);
-  const [categorias, setCategorias] = useState([]);
   const [loading, setLoading] = useState(true);
   // função para buscar os dados na API
   useEffect(() => {
@@ -33,11 +33,13 @@ export default function Dashboard() {
       try {
         const response = await fetch("/api/dashboard");
         const data = await response.json();
-        setDespesas(data.data.despesas);
-        setReceitas(data.data.receitas);
+        console.log();
+        setQtdReceitas(data.data.resumo.quantidadeReceitas);
+        setQtdDespesas(data.data.resumo.quantidadeDespesas);
+        setSomaReceitas(data.data.resumo.totalReceitas);
+        setSomaDespesas(data.data.resumo.totalDespesas);
         setUltimaTransacao(data.data.ultimaTransacao);
         setUltimasTransacoes(data.data.ultimasTransacoes);
-        setCategorias(data.data.categorias);
       } catch (error) {
         console.error(error);
       } finally {
@@ -68,9 +70,10 @@ export default function Dashboard() {
       </div>
       {/* grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
-        <CardDash title="Receitas" value={receitas.length} />
-        <CardDash title="Despesas" value={despesas.length} />
-        <CardDash title="Categorias" value={categorias.length} />
+        <CardDash title="Qtd Receitas" value={qtdReceitas} />
+        <CardDash title="Qtd Despesas" value={qtdDespesas} />
+        <CardDash title="Total Receitas" value={somaReceitas} />
+        <CardDash title="Total Despesas" value={somaDespesas} />
         <CardUltimoLog
           title={ultimaTransacao.titulo}
           tipo={ultimaTransacao.tipo}
