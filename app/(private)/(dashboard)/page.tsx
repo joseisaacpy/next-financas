@@ -31,7 +31,9 @@ export default function Dashboard() {
   useEffect(() => {
     async function getData() {
       try {
-        const response = await fetch("/api/dashboard");
+        const response = await fetch("/api/dashboard", {
+          cache: "no-store",
+        });
         const data = await response.json();
         console.log();
         setQtdReceitas(data.data.resumo.quantidadeReceitas);
