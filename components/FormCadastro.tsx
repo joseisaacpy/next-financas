@@ -1,5 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import useCategorias from "@/hooks/useCategorias";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,8 +14,8 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import type { Categoria } from "@/types/categoria";
 import { FormData } from "@/types/formData";
+import Loader from "./Loader";
 
 export default function FormCadastro() {
   // objeto do form
@@ -28,7 +29,7 @@ export default function FormCadastro() {
   });
 
   // estado para armazenar as categorias
-  const [categorias, setCategoria] = useState<Categoria[]>([]);
+  const { categorias, loading } = useCategorias();
   const categoriasFiltradas = categorias.filter(
     (categoria) => categoria.tipo === formData.tipo
   );
@@ -52,7 +53,9 @@ export default function FormCadastro() {
       toast.error("Preencha todos os campos");
       return;
     }
-    console.table(formData);
+
+    // ativa o envio
+    setSending(true);
     try {
       // enviar os dados para a API
       const response = await fetch(`/api/transacoes`, {
@@ -83,25 +86,14 @@ export default function FormCadastro() {
       // mensagem de erro
       toast.error("Erro ao realizar o cadastro!");
     } finally {
-      setSending(true);
+      // desativa o envio
+      setSending(false);
     }
   };
-
-  // função para buscar as categorias
-  useEffect(() => {
-    async function buscarCategorias() {
-      try {
-        const response = await fetch(`/api/categorias`);
-        const data = await response.json();
-        setCategoria(data.data);
-      } catch (error) {
-        console.error(error);
-        toast.error("Erro ao carregar categorias");
-      }
-    }
-    // chama a função
-    buscarCategorias();
-  }, []);
+  // se estiver carregando as categorias do banco
+  if (loading) {
+    return <Loader />;
+  }
   return (
     // section
     <section className="section">
