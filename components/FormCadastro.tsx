@@ -17,10 +17,6 @@ import type { Categoria } from "@/types/categoria";
 import { FormData } from "@/types/formData";
 
 export default function FormCadastro() {
-  // estado para armazenar as categorias
-  const [categorias, setCategoria] = useState<Categoria[]>([]);
-  // estado para controlar o envio do formulário
-  const [sending, setSending] = useState<boolean>(false);
   // objeto do form
   const [formData, setFormData] = useState<FormData>({
     titulo: "",
@@ -30,6 +26,15 @@ export default function FormCadastro() {
     categoriaId: "",
     data: new Date().toISOString().split("T")[0],
   });
+
+  // estado para armazenar as categorias
+  const [categorias, setCategoria] = useState<Categoria[]>([]);
+  const categoriasFiltradas = categorias.filter(
+    (categoria) => categoria.tipo === formData.tipo
+  );
+
+  // estado para controlar o envio do formulário
+  const [sending, setSending] = useState<boolean>(false);
 
   //   função para enviar o formulário
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -167,6 +172,7 @@ export default function FormCadastro() {
         <div className="form-group">
           <Label htmlFor="categoria">Categoria:</Label>
           <Select
+            disabled={!formData.tipo}
             value={formData.categoriaId}
             onValueChange={(value) =>
               setFormData({
@@ -184,7 +190,7 @@ export default function FormCadastro() {
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Categorias</SelectLabel>
-                {categorias.map((categoria) => (
+                {categoriasFiltradas.map((categoria) => (
                   <SelectItem key={categoria.id} value={String(categoria.id)}>
                     {categoria.nome}
                   </SelectItem>
