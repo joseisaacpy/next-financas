@@ -19,7 +19,8 @@ import { FormData } from "@/types/formData";
 export default function FormCadastro() {
   // estado para armazenar as categorias
   const [categorias, setCategoria] = useState<Categoria[]>([]);
-
+  // estado para controlar o envio do formulário
+  const [sending, setSending] = useState<boolean>(false);
   // objeto do form
   const [formData, setFormData] = useState<FormData>({
     titulo: "",
@@ -76,6 +77,8 @@ export default function FormCadastro() {
       console.error(error);
       // mensagem de erro
       toast.error("Erro ao realizar o cadastro!");
+    } finally {
+      setSending(true);
     }
   };
 
@@ -199,7 +202,9 @@ export default function FormCadastro() {
             onChange={(e) => setFormData({ ...formData, data: e.target.value })}
           />
         </div>
-        <Button type="submit">Salvar</Button>
+        <Button type="submit" disabled={sending}>
+          {sending ? "Enviando..." : "Cadastrar"}
+        </Button>
       </form>
     </section>
   );
