@@ -39,6 +39,7 @@ export async function POST(request: Request) {
       valor: Number(body.valor),
       tipo: body.tipo,
       categoriaId: Number(body.categoriaId),
+      criadoEm: body.criadoEm ? new Date(body.data) : undefined,
     };
     // cria a transação
     const transacao = await prisma.transacao.create({
